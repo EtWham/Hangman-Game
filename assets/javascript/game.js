@@ -1,3 +1,4 @@
+//I think there are a fair amount of mistakes and missteps in my code. What I built relying on the exercises from class I couldn't get to function so I tried to find other solutions. I have a feeling that I definitely did not stay DRY
 var unhealthyFoods = ["pizza", "donuts", "pancakes", "cheesburgers", "cookies", "ice-cream"];
 var guessesRemaining = 10;
 
@@ -43,7 +44,7 @@ function buildSpaces(MysteryFoodName) {
          document.getElementById("letter-panels").appendChild(input);
      };
 }
-//Below are all the functions I tried to use to create the game. I have a feeling that I definitely did not stay DRY
+//Below are all the functions I tried to use to create the game. 
 function validatefoodsubmitted(guessFood) {
     if(0 == guessFood.length) {
         return false;
