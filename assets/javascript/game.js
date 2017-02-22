@@ -10,7 +10,7 @@ function initializeHangman()
     setCorrectGuesses(0);
     setGuessesRemaining(10);
 }
-//I tried to take the guesses then separate the comparison of the guesses to the letters in the unhealthyFood array as two separate functions along with setting up what happens when the user guesses correctly or incorrectly, when the game is over, and how the guess counter should go down 
+//I tried to take the guesses along with setting up what happens when the user guesses correctly or incorrectly, when the game is over, and how the guess counter should go down
 function takeGuess()
 {
     var guessFood = document.getElementById("guess-food");
@@ -30,7 +30,7 @@ function takeGuess()
         gameOver();
     }
 }
-//Here I was using some method I found online trying to build boxes for the blank spaces to add some level of detail//
+//Here I was using another method I found online trying to build boxes for the blank spaces to add some level of detail
 function buildSpaces(MysteryFoodName) {
     var lettersInFood = getMysteryFood().split("");
 
