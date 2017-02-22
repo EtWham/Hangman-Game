@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hangman!</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  </head>
+  <body>
+
+<!-- <div class="wrapper">
+   <h1>Hangman</h1>
+    <p>Type a letter to guess the word. </p>
+</div>
+<div class="wrapper">
+    <div id="buttons">
+    </div>  
+    <p id="catagoryName"></p>
+    <div id="hold">
+    </div>
+    <p id="mylives"></p>
+    <div class="container">
+      <button id="reset">Play again</button>
+    </div>
+</div> -->
+
+<!-- 
+<h1>Hangman Game</h1>
+
+<p>Type a letter and press guess to get started!</p>
+<form id="hangman">
+    <input type="text" maxlength="1" minlength="1" name="letter" id="letter" placeholder="Guess a letter" />
+    <input id="guess" name="guess" type="submit" value="Guess" />
+    <button id="restart" name="restart" type="button">Restart</button>
+</form>
+<ul id="letters"></ul>
+<p id="man"></p>
+<p id="output" class="output"></p> -->
+
+    <h1>Hangman</h1>
+    <p>Type a letter to guess the junk food! Press any key to get started.</p>
+    <div id="gameboard">
+        <input type="hidden" id="correct-guesses" />
+        <form>
+            <input type="hidden" id="correct-answer" value=""/>
+            <fieldset id="letter-panels"></fieldset>
+            <fieldset id = "game-controls">
+                <input type="text" id="guess-food" size="1" value =""/>
+                <input type="button" id="submit-guess" value="guess" onclick="takeGuess();" />
+            </fieldset>
+        </form>
+    </div>
+
+
+</body>
+
+<script type="text/javascript" src="assets/javascript/game.js"></script>
+
+</html>
