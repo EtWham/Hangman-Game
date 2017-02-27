@@ -1,131 +1,89 @@
-//I think there are a fair amount of mistakes and missteps in my code. What I built relying on the exercises from class I couldn't get to function so I tried to find other solutions. I have a feeling that I definitely did not stay DRY
-var unhealthyFoods = ["pizza", "donuts", "pancakes", "cheesburgers", "cookies", "ice-cream"];
-var guessesRemaining = 10;
+//create arrays
+//create userGuess then use key press event to record & push userGuess to userGuessIndex which will be displayed
+//create hangman words array/index & randomize selection of the words in game
+//create & display random hangman word array with blank spaces
 
 
-function initializeHangman()
-{
-    setMysteryFood();
-    buildSpaces(getMysteryFood().split(""));
-    setCorrectGuesses(0);
-    setGuessesRemaining(10);
-}
-//I tried to take the guesses along with setting up what happens when the user guesses correctly or incorrectly, when the game is over, and how the guess counter should go down
-function takeGuess()
-{
-    var guessFood = document.getElementById("guess-food");
+//compare userGuess to all letters in current random hangman word
+    //if matches, display correct letter
+    //if does not match, display no letter & take away one life
+//use loop-tv.html template to set up prompt guesses
 
-    if(true === validatefoodsubmitted(guessFood)) {
-        if(true === guessFoodInMysteryFood(guessFood)) {
-            revealLetter(guessFood);
-        } 
-        else {
-            setguessesRemaining(guessesRemaining()-1);
-            incorrectGuess();
+//I think there are a bunch of mistakes and missteps in my code. I feel like I confused myself more and I have a feeling that I definitely did not stay DRY
+
+function startup() {
+
+
+var unhealthyFoods = ["candy", "pizza", "donuts", "pancakes", "cheesburgers", "cookies", "ice cream"];
+var lives = 10;
+var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var userGuess = document.getElementById("user-guess");
+var userGuessIndex = [];
+var answerArray = [];
+var letters = "-"
+
+    document.onkeyup = function(event) {
+        // console.log(event);
+        userGuess.innerHTML = event.key; 
+        var userGuess = event.key;
+        userGuessIndex.push(userGuess);
+        document.getElementById("UserGuess").innerHTML = userGuessIndex;
+        console.log(userGuessIndex);
+
+    function getFood() {
+        currentWord = unhealthyFoods[Math.floor(Math.random() * (unhealthyFoods.length-1))];
+
+        letters = document.getElementById("letters");
+        letters.innerHTML = '<li class="currentWord">Current word:</li>';
+
+        // var letter, i;
+        // for (i = 0; i < currentWord.length; i++) {
+        //     letter = '<li class="letter letter' + currentWord.charAt(i).toUpperCase() + '">' + currentWord.charAt(i).toUpperCase() + '</li>';
+        //     letters.insertAdjacentHTML('beforeend', letter);
+        // }
+    }
+
+    function displayWord() {
+        for (var i = 0; i < unhealthyFoods.length; i++) {
+        answerArray[i] = "_";
         }
-        else {
-        noLetter();
+        var remainingLetters = unhealthyFoods.length;
     }
-        else {
-        gameOver();
+
+    function compare() {
+        for (var i = 0; i < unhealthyFoods.length; i++) {
+        if (currentWord[i] === userGuessIndex) {
+            answerArray[i] = userGuessIndex;
+            remainingLetters--;
+            }
+        }
+
+        
+        if (currentWord[i] != userGuessIndex) {
+            alert("Bad choice, try again!")
+            lives = lives - 1 
+        
+        }
+   
+    else (userGuessIndex.length != 1){
+            alert("Please enter a single letter.");
+        } 
     }
-}
-//Here I was using another method I found online trying to build boxes for the blank spaces to add some level of detail
-function buildSpaces(MysteryFoodName) {
-    var lettersInFood = getMysteryFood().split("");
+        
+        var html = "<p>Press the reset to play again!</p>" +
+          "<p>lives: " + lives + "</p>";
 
-    for (var i = 0; i < lettersInFood.length; i++) {
-         var input = document.createElement("input");
-         input.type = "text";
-         input.maxLength = 1;
-         input.className = "character-panel[" + lettersInFood[i] + "]";
-         input.value = "_";
-         input.disabled = true;
-         document.getElementById("letter-panels").appendChild(input);
-     };
-}
-//Below are all the functions I tried to use to create the game. 
-function validatefoodsubmitted(guessFood) {
-    if(0 == guessFood.length) {
-        return false;
+        document.getElementById("gameboard").innerHTML = html;
     }
-    return true;
+};
 }
 
-function guessFoodInMysteryFood(guessFood, MysteryFood) {
-    if(0 > getMysteryFood().search(guessFood)) {
-        return false;
-    }
-    return true;
-}
 
-function getRandomfood() {
-    return unhealthyFoods[Math.floor(Math.random() * (unhealthyFoods.length-1))];
-}
+startup();
 
-function setMysteryFood() {
-    document.getElementById("correct-answer").value = getRandomfood();
-    return true;
-}
 
-function getMysteryFood() {
-    return document.getElementById("correct-answer").value;
-}
-
-function setGuessesRemaining(guessesRemaining) {
-    document.getElementById("guesses-remaining") === guessesRemaining;
-}
-
-function getGuessesRemaining() {
-    return parseInt(document.getElementById("guesses-remaining").value);
-}
-
-function setCorrectGuesses(correctGuesses) {
-    document.getElementById("correct-guesses") === correctGuesses;
-}
-
-function correctGuesses() {
-    return parseInt(document.getElementById("correct-guesses").value);
-}
-
-function revealLetter(letterToReveal) {
-    var panelsToReveal = document.getElementsByClassName("character-panel[" + letterToReveal + "]");
-
-    for (var i = 0; i < panelsToReveal.length; i++) {
-        panelsToReveal[i].value = letterToReveal;
-        setCorrectGuesses(correctGuesses()+1);
-    }
-}
-
-function noLetter() {
-    alert("You need to guess a letter!");
-    return true;
-}
-
-function incorrectGuess() {
-    alert("Try again!");
-    return true;
-}
-
-function playerLost() {
-    alert("You lost. Better luck next time!");
-    return true;
-}
-
-function playerWon() {
-    alert("You won!!!");
-    return true;
-}
-
-function gameOver() {
-    if(0 === getGuessesRemaining()) {
-        playerLost();
-        location.reload();
-    } else if(correctGuesses() == getMysteryFood().length){
-        playerWon();
-        location.reload();
-    }
-}
-
-initializeHangman();
-
+$(document).ready(function() {
+    $(".reset-button").on("click", function() {
+        startup();
+      });
+});

@@ -5,23 +5,35 @@
     <title>Hangman!</title>
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery.js"></script>
   </head>
   <body>
 
     <h1>Hangman</h1>
     <p>Type a letter to guess the junk food! Press any key to get started.</p>
-    <div id="gameboard">
-        <input type="hidden" id="correct-guesses" />
-        <form>
-            <input type="hidden" id="correct-answer" value=""/>
-            <fieldset id="letter-panels"></fieldset>
-            <fieldset id = "game-controls">
-                <input type="text" id="guess-food" size="1" value =""/>
-                <input type="button" id="submit-guess" value="guess" onclick="takeGuess();" />
-            </fieldset>
-        </form>
+    <div class = "row">
+      <div class ="image-left">
+        <div class="col-lg-6">
+          <img src="http://ih.constantcontact.com/fs150/1105091298208/img/302.png?a=1114767485877" alt="" class="img food-pic" style="position:absolute; top:50px; left: 50px; z-index: -20; height: 200px">
+        </div> 
+      </div>    
     </div>
-    
+    <div id="gameboard">
+      <div class ="text-center">
+        <span id = "currentWord"> The mystery word is: </span>
+        <br>
+        </br>
+        <span id = "userGuess">You have guessed: </span>
+      </div>
+    </div>  
+
+      <div class="panel-body">
+      <div class="text-center">
+              <button class="btn btn-default btn-lg up-button"><span class="glyphicon glyphicon-registration-mark"></span> Reset</button>
+            </div>
+      </div>
+      </div>
 </body>
 
 <script type="text/javascript" src="assets/javascript/game.js"></script>
